@@ -1,4 +1,9 @@
-require 'generators/acts_as_taggable_on/migration/templates/active_record/migration'
+require "bundler"
+require "bundler/cli"
+require "bundler/cli/common"
+
+acts_as_taggable_on_path = Bundler::CLI::Common.select_spec("acts-as-taggable-on").full_gem_path
+require File.join acts_as_taggable_on_path, 'db/migrate/1_acts_as_taggable_on_migration'
 
 class RedmineActsAsTaggableOn::Migration < ActsAsTaggableOnMigration
   class SchemaMismatchError < StandardError; end
